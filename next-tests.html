@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Next Tests | Channel Adoption Readout</title>
+  <meta name="description" content="What to make and test next, with the bar set before each test starts. Synthetic data.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <div class="top-row">
+        <h1>Next Tests</h1>
+        <span class="badge">Synthetic data</span>
+      </div>
+      <p class="lede">What to make and test next, with the bar set before each test starts.</p>
+      <p class="context">Same made-up product and the same data as the readout: Weeks 1-8, seed <span id="seed-top">20261002</span>, first touch credit, activated = 3 or more runs in the first 7 days.</p>
+      <p class="result" id="result" aria-live="polite">Loading the plan.</p>
+      <nav class="pagenav" aria-label="Pages">
+        <a href="index.html">1. Readout</a>
+        <a href="next-tests.html" aria-current="page">2. Next tests</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="topics-s" aria-labelledby="topics-h">
+      <h2 id="topics-h">Which topics' readers kept using it</h2>
+      <p class="section-intro">Signups credited to the integration how-to pages, the YouTube walkthrough and the docs quickstart, split by the topic each person read. Readers are visits to those pages on that topic. Sorted by activated per 1,000 readers. The held burst is left out.</p>
+      <div class="table-wrap">
+        <table id="topic-table">
+          <thead>
+            <tr>
+              <th scope="col" class="num">#</th>
+              <th scope="col">Topic</th>
+              <th scope="col" class="num">Readers</th>
+              <th scope="col" class="num">Signups</th>
+              <th scope="col" class="num">Activated</th>
+              <th scope="col" class="num">Activated per 1,000 readers</th>
+              <th scope="col" class="num">Qualified demos</th>
+              <th scope="col">Most common first workflow</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+          <tfoot></tfoot>
+        </table>
+      </div>
+    </section>
+
+    <section id="tests-s" aria-labelledby="tests-h">
+      <h2 id="tests-h">Three tests, with the bar set first</h2>
+      <p class="section-intro">Each test gets one metric, a minimum sample and a win bar before it starts, so the result can't be argued into a win afterwards.</p>
+      <div class="bar-strip" id="bar-strip"></div>
+      <div class="cards" id="cards"></div>
+    </section>
+
+    <section id="weekly-s" aria-labelledby="weekly-h">
+      <h2 id="weekly-h">Weekly check</h2>
+      <p class="section-intro">The four numbers to review each week for each live test, filled with synthetic week 1 values. The status line applies the rules above.</p>
+      <div class="table-wrap">
+        <table id="weekly-table">
+          <thead>
+            <tr>
+              <th scope="col">Test</th>
+              <th scope="col" class="num">Visits</th>
+              <th scope="col" class="num">Signups</th>
+              <th scope="col" class="num">Activated</th>
+              <th scope="col" class="num">Qualified demos</th>
+              <th scope="col" class="num">Activated per 1,000 visits</th>
+              <th scope="col">Status after week 1</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="assumptions-s" aria-labelledby="assumptions-h">
+      <h2 id="assumptions-h">Assumptions</h2>
+      <div class="card assumptions"><ul id="assumptions"></ul></div>
+    </section>
+
+    <section id="questions-s" aria-labelledby="questions-h">
+      <h2 id="questions-h">Two more questions before running these</h2>
+      <div class="card questions">
+        <ol>
+          <li>Who records demos today, and which one led to the most real usage?</li>
+          <li>Do you already use a minimum sample before calling a channel test?</li>
+        </ol>
+      </div>
+      <a class="next-link" href="index.html">&larr; Back to the readout</a>
+    </section>
+  </main>
+
+  <footer class="wrap foot">
+    <p>Synthetic data. Built by Dakshit Raj with Claude Code and Codex.</p>
+    <p>No network calls, accounts or analytics on this page.</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="readout.mjs"></script>
+  <script src="next.js"></script>
+</body>
+</html>

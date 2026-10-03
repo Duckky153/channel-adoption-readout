@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Channel Adoption Readout</title>
+  <meta name="description" content="Which channels and pages brought people who kept using a product, not just visitors. Synthetic data.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <div class="top-row">
+        <h1>Channel Adoption Readout</h1>
+        <span class="badge">Synthetic data</span>
+      </div>
+      <p class="lede">Which channels and pages brought people who kept using the product, not just visitors.</p>
+      <p class="context">The subject is made up: a free-to-start, open-source workflow product with a cloud signup and a demo-request form. Weeks 1-8, no calendar dates. Seed <span id="seed-top">20261002</span>.</p>
+      <p class="result" id="result" aria-live="polite">Loading the readout.</p>
+      <nav class="pagenav" aria-label="Pages">
+        <a href="index.html" aria-current="page">1. Readout</a>
+        <a href="next-tests.html">2. Next tests</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="sources" aria-labelledby="sources-h">
+      <h2 id="sources-h">Sources</h2>
+      <p class="section-intro">Every source, with each signup credited once. Pick a row to see its weeks and the paths people took before signing up.</p>
+
+      <div class="controls" id="controls">
+        <fieldset class="seg">
+          <legend>Credit</legend>
+          <div class="seg-opts">
+            <label><input type="radio" name="credit" value="first" checked><span>First touch</span></label>
+            <label><input type="radio" name="credit" value="last"><span>Last touch</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="seg">
+          <legend>Activated means</legend>
+          <div class="seg-opts">
+            <label><input type="radio" name="runs" value="1"><span>1 run</span></label>
+            <label><input type="radio" name="runs" value="3" checked><span>3 runs</span></label>
+            <label><input type="radio" name="runs" value="5"><span>5 runs</span></label>
+          </div>
+          <span class="seg-hint">in the first 7 days</span>
+        </fieldset>
+      </div>
+
+      <p class="status-line" id="reconcile"></p>
+      <p class="flip-note" id="flip-note"></p>
+
+      <div class="grid">
+        <div class="table-wrap">
+          <table id="source-table">
+            <thead>
+              <tr>
+                <th scope="col" data-key="label"><button type="button">Source</button></th>
+                <th scope="col" class="num" data-key="visits"><button type="button">Visits</button></th>
+                <th scope="col" class="num" data-key="signups"><button type="button">Signups</button></th>
+                <th scope="col" class="num" data-key="activated"><button type="button">Activated</button></th>
+                <th scope="col" class="num" data-key="activationRate"><button type="button">Activation rate</button></th>
+                <th scope="col" class="num" data-key="perThousand"><button type="button">Activated per 1,000 visits</button></th>
+                <th scope="col" class="num" data-key="qualifiedDemos"><button type="button">Qualified demos</button></th>
+                <th scope="col" data-key="verdict"><button type="button">Verdict</button></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <aside class="card detail" id="detail" aria-live="polite"></aside>
+      </div>
+    </section>
+
+    <section id="shares" aria-labelledby="shares-h">
+      <h2 id="shares-h">Attention or adoption</h2>
+      <p class="section-intro">Each dot is a source. Across is its share of all visits, up is its share of all activated signups. A dot above the line brought more than its share of people who kept using the product.</p>
+      <div class="card chart-card">
+        <div id="scatter"></div>
+        <div class="legend">
+          <span><i class="l-adoption"></i>Adoption</span>
+          <span><i class="l-mixed"></i>Mixed (below the line, within 2x)</span>
+          <span><i class="l-attention"></i>Attention only (2x or more below)</span>
+          <span><i class="l-early"></i>Too early to judge</span>
+        </div>
+        <p class="muted" style="font-size:0.82rem;margin:8px 0 0">Both axes use a square-root scale so the small sources don't pile up in the corner. The dashed line is still where the two shares are equal. No source has no visits, so it isn't plotted.</p>
+      </div>
+    </section>
+
+    <section id="spike" aria-labelledby="spike-h">
+      <h2 id="spike-h">Trace the spike</h2>
+      <p class="section-intro">Signups per week. Pick a week to see where its signups came from and how many of them activated.</p>
+      <div class="split">
+        <div class="card chart-card">
+          <div id="spike-chart"></div>
+          <div class="legend">
+            <span><i class="l-act"></i>Activated</span>
+            <span><i class="l-rest"></i>Not activated</span>
+            <span><i class="l-held"></i>Held burst</span>
+          </div>
+        </div>
+        <div class="card">
+          <p class="spike-sentence" id="spike-sentence"></p>
+          <div class="table-wrap" style="border:0;border-radius:0">
+            <table id="week-table">
+              <thead>
+                <tr>
+                  <th scope="col">Source</th>
+                  <th scope="col" class="num">Signups</th>
+                  <th scope="col" class="num">Share</th>
+                  <th scope="col" class="num">Activated</th>
+                  <th scope="col" class="num">Rate</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="exceptions-s" aria-labelledby="exceptions-h">
+      <h2 id="exceptions-h">Exceptions</h2>
+      <p class="section-intro">Everything the rules set aside, so nothing disappears quietly.</p>
+      <ul class="exceptions" id="exceptions"></ul>
+    </section>
+
+    <section id="open-source" aria-labelledby="os-h">
+      <h2 id="os-h">Not counted above</h2>
+      <p class="section-intro">Open-source activity is real interest, but it can't be tied to a person or a signup, so it gets its own panel and is never added to any number above.</p>
+      <div class="os-grid" id="os-panel"></div>
+    </section>
+
+    <section id="rules-s" aria-labelledby="rules-h">
+      <h2 id="rules-h">The rules</h2>
+      <p class="section-intro">Every number on this page comes from these eight rules, computed live. The grey line under each one is its count in the current view.</p>
+      <ol class="rules" id="rules"></ol>
+    </section>
+
+    <section id="assumptions-s" aria-labelledby="assumptions-h">
+      <h2 id="assumptions-h">Assumptions</h2>
+      <div class="card assumptions"><ul id="assumptions"></ul></div>
+    </section>
+
+    <section id="questions-s" aria-labelledby="questions-h">
+      <h2 id="questions-h">Questions I'd want answered before trusting this on real data</h2>
+      <div class="card questions">
+        <ol>
+          <li>What event counts as an activated user for you today, and how long after signup do you check?</li>
+          <li>Do self-hosted installs send anything back, or is that usage invisible to marketing?</li>
+          <li>When someone already on the free plan requests a demo, does the credit go to the page they first read or to the product?</li>
+          <li>When someone reads three pages before signing up, which one does your reporting credit today?</li>
+        </ol>
+      </div>
+      <a class="next-link" href="next-tests.html">Next: what to make and test next &rarr;</a>
+    </section>
+  </main>
+
+  <footer class="wrap foot">
+    <p>Synthetic data. Built by Dakshit Raj with Claude Code and Codex.</p>
+    <p>No network calls, accounts or analytics on this page.</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="readout.mjs"></script>
+  <script src="app.js"></script>
+</body>
+</html>
